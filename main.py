@@ -13,7 +13,9 @@ with open("YA_Books.csv", mode = "r") as bookfile:
 
     worst_rating = 5.0
 
-    highest_rating = 5.0
+    highest_rating = 0.0
+
+    highest_pages = 0 
 
 
     for book in books:
@@ -24,7 +26,7 @@ with open("YA_Books.csv", mode = "r") as bookfile:
             print(author)
 
         #get most recently published book 
-        # year = int(book[2])
+        year = int(book[2])
         # if year > most_recent_published:
         #     most_recent_published = year 
         #     most_recent_book = book 
@@ -37,11 +39,16 @@ with open("YA_Books.csv", mode = "r") as bookfile:
 
         # get highest rating for any book in dataset
         rate = float(book[6])
-        if rate < highest_rating:
+        if rate > highest_rating:
             highest_rating = rate
             highest_rating_star = book
 
-
+        # get highest pages before the 2000s
+        pages = int(book[5])
+        if year <= 2000:
+            if pages > highest_pages:
+                highest_pages = pages
+                highest_count = book
 
     # print(f"Most recetly published: {most_recent_book}]")
 
@@ -51,6 +58,8 @@ with open("YA_Books.csv", mode = "r") as bookfile:
     #print the book has highest rating
     print(f"Highest star rating: {highest_rating_star}")
 
+    #print the highest pages beofore 2000's
+    print(f"Book highest pages: {highest_count}")
 
 
 
